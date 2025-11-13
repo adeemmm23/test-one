@@ -1,6 +1,7 @@
 import Seperator from "./components/seperator";
 import Submit from "./components/submit";
 import Tile from "./components/tile";
+import * as React from "react";
 
 export default function App() {
   return (
@@ -11,20 +12,53 @@ export default function App() {
 }
 
 function PageSelector() {
+  const [pagesData, setPagesData] = React.useState<PagesDataType[]>([
+    { number: "1", isChecked: false },
+    { number: "2", isChecked: true },
+    { number: "3", isChecked: false },
+  ]);
   return (
-    <div className="max-w-xl w-full rounded-2xl bg-white shadow-2xs px-4 py-6 border-2 border-zinc-100 gap-4 flex flex-col">
-      <Tile content="All pages" isChecked={false} onCheck={() => {}} />
+    <div className="max-w-xl w-full rounded-2xl bg-white/5 px-4 py-6 border-2 border-zinc-100 gap-4 flex flex-col shadow-(--shadow-card)">
+      <Tile
+        content="All pages"
+        isChecked={pagesData.every((page) => page.isChecked)}
+        onCheck={() => {
+          const allChecked = pagesData.every((page) => page.isChecked);
+          setPagesData((prev) =>
+            prev.map((page) => ({ ...page, isChecked: !allChecked }))
+          );
+        }}
+      />
       <Seperator />
-      {[1, 2, 3, 4, 5].map((num) => (
-        <Tile
-          key={num}
-          content={`Page ${num}`}
-          isChecked={false}
-          onCheck={() => {}}
-        />
-      ))}
+      {pagesData.length > 0 ? (
+        pagesData.map((page) => (
+          <Tile
+            key={page.number}
+            content={`Page ${page.number}`}
+            isChecked={page.isChecked}
+            onCheck={() => {
+              setPagesData((prev) =>
+                prev.map((p) =>
+                  p.number === page.number
+                    ? { ...p, isChecked: !p.isChecked }
+                    : p
+                )
+              );
+            }}
+          />
+        ))
+      ) : (
+        <div className="text-center text-sm text-zinc-500 py-6">
+          No pages available
+        </div>
+      )}
       <Seperator />
       <Submit />
     </div>
   );
 }
+
+type PagesDataType = {
+  number: string;
+  isChecked: boolean;
+};
