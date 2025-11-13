@@ -13,14 +13,14 @@ function Checkbox({
     <CheckboxPrimitive.Root
       data-slot="checkbox"
       className={cn(
-        "peer border-input data-[state=checked]:bg-primary data-[state=checked]:border-primary focus:border-primary focus:ring-primary/10 aria-invalid:ring-destructive/20 aria-invalid:border-destructive size-6 shrink-0 rounded-sm border outline-none focus:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 transition-all text-white",
+        "peer border-input data-[state=checked]:bg-primary data-[state=checked]:border-primary focus:border-primary focus:ring-primary/1 size-6 shrink-0 rounded-sm border outline-none focus:ring-[3px] transition-all text-white hover:border-primary/90 data-[state=checked]:hover:bg-primary/90",
         className
       )}
       {...props}
     >
       <CheckboxPrimitive.Indicator
         data-slot="checkbox-indicator"
-        className="grid place-content-center text-current transition-none"
+        className="grid place-content-center text-current"
       >
         <CheckIcon className="size-5" />
       </CheckboxPrimitive.Indicator>
