@@ -1,3 +1,5 @@
+import { Checkbox } from "./components/checkbox";
+
 export default function App() {
   return (
     <div className="min-h-screen bg-white flex justify-center items-center">
@@ -40,15 +42,6 @@ function Page({ number }: PageProps) {
       <span className="text-lg font-medium text-stone-700">Page {number}</span>
       <Checkbox />
     </div>
-  );
-}
-
-function Checkbox() {
-  return (
-    <input
-      type="checkbox"
-      className="w-5 h-5 accent-blue-500 rounded-3xl focus:ring-2 ring-blue-300"
-    />
   );
 }
 
