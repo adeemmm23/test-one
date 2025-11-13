@@ -12,6 +12,7 @@
   --color-card-foreground: var(--card-foreground);
   --color-input: var(--input);
   --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
   --color-shadow: var(--shadow);
 }
 
@@ -25,6 +26,7 @@
   --card-foreground: oklch(0.145 0 0);
   --input: #cdcdcd;
   --primary: #2469f6;
+  --secondary: #ffd84d;
   --shadow: #1414141f;
 }
 
