@@ -1,7 +1,8 @@
+import * as React from "react";
 import Seperator from "./components/seperator";
 import Submit from "./components/submit";
 import Tile from "./components/tile";
-import * as React from "react";
+import type { PagesDataType } from "./types";
 
 export default function App() {
   const [pagesData, setPagesData] = React.useState<PagesDataType[]>([
@@ -11,29 +12,26 @@ export default function App() {
   ]);
   return (
     <div className="min-h-screen bg-background flex justify-center items-center">
-      <PageSelector pageData={pagesData} setPagesData={setPagesData} />
+      <PageSelector pagesData={pagesData} setPagesData={setPagesData} />
     </div>
   );
 }
 
 type PageSelectorProps = {
-  pageData: PagesDataType[];
+  pagesData: PagesDataType[];
   setPagesData: React.Dispatch<React.SetStateAction<PagesDataType[]>>;
 };
 
-function PageSelector({
-  pageData: pagesData,
-  setPagesData,
-}: PageSelectorProps) {
+function PageSelector({ pagesData, setPagesData }: PageSelectorProps) {
   return (
-    <div className="max-w-lg w-full rounded-2xl bg-background px-4 py-6 border-2 border-input/25 gap-4 flex flex-col shadow-(--shadow-card) animate-in fade-in-50 slide-in-from-top-5 duration-500">
+    <div className="max-w-lg w-full rounded-xl bg-background px-4 py-6 border-2 border-input/25 gap-4 flex flex-col shadow-(--shadow-card) animate-in fade-in-50 slide-in-from-top-5 duration-500">
       <Tile
         content="All pages"
         isChecked={pagesData.every((page) => page.isChecked)}
         onCheck={() => {
           const allChecked = pagesData.every((page) => page.isChecked);
-          setPagesData((prev) =>
-            prev.map((page) => ({ ...page, isChecked: !allChecked }))
+          setPagesData(
+            pagesData.map((page) => ({ ...page, isChecked: !allChecked }))
           );
         }}
       />
@@ -45,13 +43,11 @@ function PageSelector({
             content={`Page ${page.number}`}
             isChecked={page.isChecked}
             onCheck={() => {
-              setPagesData((prev) =>
-                prev.map((p) =>
-                  p.number === page.number
-                    ? { ...p, isChecked: !p.isChecked }
-                    : p
-                )
+              const newPageState = { ...page, isChecked: !page.isChecked };
+              const newPagesData = pagesData.map((p) =>
+                p.number === page.number ? newPageState : p
               );
+              setPagesData(newPagesData);
             }}
           />
         ))
@@ -65,8 +61,3 @@ function PageSelector({
     </div>
   );
 }
-
-type PagesDataType = {
-  number: string;
-  isChecked: boolean;
-};
