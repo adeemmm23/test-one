@@ -18,8 +18,8 @@
 
 :root {
   --shadow-card: 0px 8px 15px 0px
-      color-mix(in srgb, var(--color-shadow) 12%, transparent),
-    0px 0px 4px 0px color-mix(in srgb, var(--color-shadow) 10%, transparent);
+      color-mix(in srgb, var(--color-shadow) 40%, transparent),
+    0px 0px 4px 0px color-mix(in srgb, var(--color-shadow) 30%, transparent);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
