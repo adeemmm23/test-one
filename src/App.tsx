@@ -5,7 +5,7 @@ import * as React from "react";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white flex justify-center items-center">
+    <div className="min-h-screen bg-background flex justify-center items-center">
       <PageSelector />
     </div>
   );
@@ -18,7 +18,7 @@ function PageSelector() {
     { number: "3", isChecked: false },
   ]);
   return (
-    <div className="max-w-lg w-full rounded-2xl bg-white/5 px-4 py-6 border-2 border-zinc-100 gap-4 flex flex-col shadow-(--shadow-card) animate-in fade-in-50 slide-in-from-top-5 duration-500">
+    <div className="max-w-lg w-full rounded-2xl bg-background px-4 py-6 border-2 border-input gap-4 flex flex-col shadow-(--shadow-card) animate-in fade-in-50 slide-in-from-top-5 duration-500">
       <Tile
         content="All pages"
         isChecked={pagesData.every((page) => page.isChecked)}

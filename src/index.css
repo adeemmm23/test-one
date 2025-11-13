@@ -31,11 +31,17 @@
 }
 
 .dark {
+  --shadow-card: 0px 8px 15px 0px
+      color-mix(in srgb, var(--color-shadow) 40%, transparent),
+    0px 0px 4px 0px color-mix(in srgb, var(--color-shadow) 30%, transparent);
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --input: #3a3a3a;
+  --primary: #4ea1ff;
+  --secondary: #ffda6a;
+  --shadow: #000000b3;
 }
 
 @layer base {
