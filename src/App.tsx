@@ -4,6 +4,7 @@ import Submit from "./components/submit";
 import Tile from "./components/tile";
 import type { PagesDataType } from "./types";
 import Counter from "./components/counter";
+import { Database } from "lucide-react";
 
 export default function App() {
   const [pagesData, setPagesData] = React.useState<PagesDataType[]>([
@@ -27,41 +28,44 @@ type PageSelectorProps = {
 function PageSelector({ pagesData, setPagesData }: PageSelectorProps) {
   return (
     <div className="max-w-lg w-full rounded-xl bg-background px-4 py-6 border-2 border-input/25 gap-4 flex flex-col shadow-(--shadow-card)">
-      <Tile
-        content="All pages"
-        isChecked={pagesData.every((page) => page.isChecked)}
-        onCheck={() => {
-          const allChecked = pagesData.every((page) => page.isChecked);
-          setPagesData(
-            pagesData.map((page) => ({ ...page, isChecked: !allChecked }))
-          );
-        }}
-      />
-      <Seperator />
-      <div className="max-h-96 flex flex-col gap-4 overflow-y-auto [scrollbar-gutter:stable] [scrollbar-width:thin]">
-        {pagesData.length > 0 ? (
-          pagesData.map((page) => (
-            <Tile
-              key={page.number}
-              content={`Page ${page.number}`}
-              isChecked={page.isChecked}
-              onCheck={() => {
-                const newPageState = { ...page, isChecked: !page.isChecked };
-                const newPagesData = pagesData.map((p) =>
-                  p.number === page.number ? newPageState : p
-                );
-                setPagesData(newPagesData);
-              }}
-            />
-          ))
-        ) : (
-          <div className="text-center text-sm text-zinc-500 py-6">
-            No pages available
+      {pagesData.length === 0 ? (
+        <div className="flex flex-col gap-4 justify-center items-center py-10">
+          <Database className="size-12 text-foreground/50" />
+          <p className="text-center text-foreground/50">No pages available</p>
+        </div>
+      ) : (
+        <>
+          <Tile
+            content="All pages"
+            isChecked={pagesData.every((page) => page.isChecked)}
+            onCheck={() => {
+              const allChecked = pagesData.every((page) => page.isChecked);
+              setPagesData(
+                pagesData.map((page) => ({ ...page, isChecked: !allChecked }))
+              );
+            }}
+          />
+          <Seperator />
+          <div className="max-h-96 flex flex-col gap-4 overflow-y-auto [scrollbar-gutter:stable] [scrollbar-width:thin]">
+            {pagesData.map((page) => (
+              <Tile
+                key={page.number}
+                content={`Page ${page.number}`}
+                isChecked={page.isChecked}
+                onCheck={() => {
+                  const newPageState = { ...page, isChecked: !page.isChecked };
+                  const newPagesData = pagesData.map((p) =>
+                    p.number === page.number ? newPageState : p
+                  );
+                  setPagesData(newPagesData);
+                }}
+              />
+            ))}
           </div>
-        )}
-      </div>
-      <Seperator />
-      <Submit />
+          <Seperator />
+          <Submit />
+        </>
+      )}
     </div>
   );
 }
