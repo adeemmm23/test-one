@@ -9,7 +9,7 @@ type CounterProps = {
 
 export default function Counter({ pagesData, setPagesData }: CounterProps) {
   return (
-    <div className="flex gap-3 rounded bg-primary p-2 fixed bottom-20 shadow-(--shadow-card)">
+    <div className="flex gap-3 rounded-md bg-primary p-2 fixed bottom-20 shadow-(--shadow-card)">
       <button
         disabled={pagesData.length === 0}
         className=" text-white cursor-pointer select-none disabled:opacity-50 disabled:cursor-not-allowed"
