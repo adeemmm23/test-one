@@ -18,7 +18,7 @@ function PageSelector() {
     { number: "3", isChecked: false },
   ]);
   return (
-    <div className="max-w-xl w-full rounded-2xl bg-white/5 px-4 py-6 border-2 border-zinc-100 gap-4 flex flex-col shadow-(--shadow-card)">
+    <div className="max-w-lg w-full rounded-2xl bg-white/5 px-4 py-6 border-2 border-zinc-100 gap-4 flex flex-col shadow-(--shadow-card) animate-in fade-in-50 slide-in-from-top-5 duration-500">
       <Tile
         content="All pages"
         isChecked={pagesData.every((page) => page.isChecked)}
