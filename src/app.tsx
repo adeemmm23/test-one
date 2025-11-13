@@ -13,7 +13,7 @@ export default function App() {
     { number: "3", isChecked: false },
   ]);
   return (
-    <div className="min-h-screen bg-background flex justify-center items-center flex-col gap-6 animate-in fade-in-50 slide-in-from-top-5 duration-500">
+    <div className="md:min-h-screen bg-background flex justify-center items-center flex-col gap-6 animate-in fade-in-50 slide-in-from-top-5 duration-500 min-h-svh p-4">
       <PageSelector pagesData={pagesData} setPagesData={setPagesData} />
       <Counter pagesData={pagesData} setPagesData={setPagesData} />
     </div>
